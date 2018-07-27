@@ -1,0 +1,49 @@
+@import '../../../common/variables.scss';
+
+:host {
+
+  .item-detail-container {
+    background-color: #fff;
+    padding: 32px;
+
+    .item-container {
+
+      .item-sold-and-condition {
+        font-size: 14px;
+        margin-bottom: 16px;
+      }
+
+      .item-title {
+        font-size: 24px;
+        margin-bottom: 32px;
+      }
+
+      .item-price {
+        font-size: 46px;
+        margin-bottom: 32px;
+      }
+
+      .btn-sell {
+        background-color: $color_blue;
+        color: #fff;    
+        width: 100%;
+        padding: 7px 0;
+        max-width: 250px;
+      }
+    }
+
+    .item-description {
+
+      h3 {
+        font-size: 28px;
+        font-weight: 400;
+        margin-bottom: 32px;
+      }
+
+      p {
+        font-size: 16px;
+        font-weight: 300;
+      }
+    }
+  }
+}

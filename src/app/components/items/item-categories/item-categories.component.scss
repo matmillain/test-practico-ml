@@ -1,0 +1,33 @@
+:host {
+  @import "../../../common/variables.scss";
+
+  .categories-list {
+    margin: 16px 0;
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+
+    @media (max-width: 1200px) {
+      padding: 0 15px;
+    }
+
+    .category-name {
+      font-size: 14px;
+      color: $color_grey_bold;
+
+      &+.category-name::before {
+        display: inline-block;
+        padding-right: .5rem;
+        padding-left: .5rem;
+        color: #868e96;
+        content: ">";
+        font-weight: 500;
+      }
+      
+      &:last-child {
+        font-weight: 600;
+      }
+    }
+  }
+}

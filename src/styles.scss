@@ -1,0 +1,47 @@
+@import "app/common/variables.scss";
+
+body {
+  margin: 0;
+  background-color: $color_grey;
+  font-family: Roboto,"Helvetica Neue",sans-serif;
+}
+
+.hide-title {
+  display: none;
+}
+
+.container {
+  max-width: 1080px;
+  justify-content: center !important;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  padding-left: 0;
+  margin-bottom: 0;
+  border-radius: 4px;
+  margin: 0 auto;
+}
+
+.fix-padding-container {
+  padding: 0 15px;
+}
+
+.no-results {
+  min-height: 204px;
+
+  .header-title {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1.08;
+  }
+
+  .tips-list {
+    list-style-type: disc;
+    padding-left: 18px;
+    margin-top: 16px;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.38;
+  }
+}

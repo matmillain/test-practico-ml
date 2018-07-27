@@ -1,0 +1,53 @@
+<!-- Spinner -->
+<app-loader-spinner 
+  *ngIf="loading"
+  [title]="'Buscando los mejores productos...'"
+  >
+</app-loader-spinner>
+
+<!-- Items serach -->
+<section *ngIf="items && !loading">
+  <h2 class="hide-title">Mercado Libre - Resultados de búsqueda!</h2>
+  <app-item-categories [categories]="categories"></app-item-categories>
+  <ul *ngIf="items.length > 0" class="sub-container item-list-container item-group-content">
+    <li *ngFor="let item of items" class="item-container">
+      <a [routerLink]="['/items', item.id]" fxLayout="row" class="item-link">
+        <div fxFlex="180px" class="item-img">
+          <img src="{{ item.thumbnail }}" alt="{{ item.title }}">
+        </div>
+        <div fxFlex class="item-detail">
+          <div class="item-price-and-location">
+            <div class="item-price">
+              $ {{ item.price | number : '1.2-2' }}
+              <img *ngIf="item.shipping.free_shipping" src="assets/images/ic_shipping.png" alt="Envío gratis">
+            </div>
+            <div class="item-location">
+              {{ item.address.city_name }}
+            </div>
+          </div>
+          <div class="item-title">
+            {{ item.title }}
+          </div>
+          <div class="item-quantity">
+            {{ 
+              (item.available_quantity == 1) 
+              ? 'Complemento único!' 
+              : ((item.available_quantity > 1) ? item.available_quantity + ' en stock!' : 'Sin stock!')
+            }}
+          </div>
+        </div>
+      </a>
+    </li>
+  </ul>
+
+  <app-handle-errors *ngIf="items.length == 0">
+    <h3 class="header-title"> 
+      No hay publicaciones que coincidan con tu búsqueda.
+    </h3>
+    <ul class="tips-list">
+      <li>Revisá la ortografía de la palabra.</li>
+      <li>Utilizá palabras más genéricas o menos palabras.</li>
+      <li>Navega por las categorías para encontrar un producto similar.</li>
+    </ul>
+  </app-handle-errors>
+</section>

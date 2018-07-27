@@ -1,0 +1,83 @@
+:host {
+  @import "../../../common/variables.scss";
+
+  .item-list-container {
+    background: #fff;
+    list-style: none;
+    padding-left: 0;
+    border-radius: 4px;
+
+    .item-container:not(:last-child):after {
+      content: "";
+      position: absolute;
+      height: 1px;
+      left: 1.25rem;
+      width: calc(100% - 2.5rem);
+      border-bottom: 1px solid #eee;
+    }
+
+    &.item-group-content {
+      position: relative;
+      display: block;
+
+      .item-container {
+
+        .item-link {
+          color: $color_black;
+          text-decoration: none;
+  
+          .item-img {
+            margin: 16px;
+          
+            img {
+              width: 180px;
+              height: 180px;
+              border-radius: 4px;
+              overflow: hidden;
+            }
+          }
+
+          .item-detail {
+            padding: 16px 0;
+
+            .item-price-and-location {
+              margin-bottom: 32px;
+    
+              .item-price {
+                font-size: 24px;
+                margin: 0;
+              }
+      
+              .item-location {
+                position: absolute;
+                right: 90px;
+                color: #666666;
+                font-size: 12px;
+              }
+            }
+
+            .item-title {
+              font-weight: 500;
+              margin-bottom: 10px;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              display: -webkit-box;
+              -webkit-line-clamp: 2;
+              -webkit-box-orient: vertical;
+              padding-right: 15px;
+            }
+
+            .item-quantity {
+              font-weight: 400;
+            }
+    
+            .item-title,
+            .item-quantity {
+              font-size: 18px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
