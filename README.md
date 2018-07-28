@@ -5,9 +5,12 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## Stack
 
 * Angular 6 (https://angular.io/)
+* Node >= 6
+
+## Docs
+
 * Angular Material (https://material.angular.io/)
 * Angular Flex Layout (https://github.com/angular/flex-layout)
-* Node >= 6
 
 ## API reference
 
