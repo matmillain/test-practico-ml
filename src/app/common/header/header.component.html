@@ -2,10 +2,7 @@
   <mat-toolbar class="header-toolbar-container">
     <mat-toolbar-row class="header-container container">
       <a [routerLink]="['/']" class="nav-logo"></a>
-      <form class="inline-form">
-        <input placeholder="Nunca dejes de buscar" class="input-search-text" #searchText>
-        <button mat-button (click)="searchItems(searchText.value)" class="btn-search">Buscar</button>
-      </form>
+      <app-search-item></app-search-item>
     </mat-toolbar-row>
   </mat-toolbar>
 </header>

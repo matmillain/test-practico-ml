@@ -2,27 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import {
-  MatButtonModule,
-  MatCardModule,
-  MatFormFieldModule,
-  MatGridListModule,
-  MatIconModule,
-  MatInputModule,
-  MatListModule,
-  MatMenuModule,
-  MatSnackBarModule,
   MatToolbarModule,
-  MatDialogModule,
-  MatOptionModule,
-  MatProgressBarModule,
-  MatSelectModule,
-  MatSortModule,
-  MatTableModule,
-  MatTabsModule,
-  MatProgressSpinnerModule,
-  MatCheckboxModule,
-  MatRadioModule,
-  MatSidenavModule
+  MatButtonModule
 } from '@angular/material';
 
 import {
@@ -36,33 +17,12 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     CommonModule,
     FlexLayoutModule
   ],
-  declarations: [],
   exports: [
     FormsModule,
     ReactiveFormsModule,
     FlexLayoutModule,
-    MatButtonModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatGridListModule,
-    MatIconModule,
-    MatInputModule,
-    MatListModule,
-    MatMenuModule,
-    MatSnackBarModule,
     MatToolbarModule,
-    MatDialogModule,
-    MatOptionModule,
-    MatProgressBarModule,
-    MatSelectModule,
-    MatSortModule,
-    MatTableModule,
-    MatTabsModule,
-    MatProgressSpinnerModule,
-    MatCheckboxModule,
-    MatRadioModule,
-    MatSidenavModule
-  ],
-  providers: []
+    MatButtonModule
+  ]
 })
 export class SharedModule { }

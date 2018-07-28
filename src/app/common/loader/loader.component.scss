@@ -4,6 +4,7 @@
     text-align: center;
     margin-top: -50px;
     font-weight: 400;
+    font-size: 22px;
   }
 
   .sk-cube-grid {
@@ -20,6 +21,7 @@
     -webkit-animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out;
             animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out; 
   }
+  
   .sk-cube-grid .sk-cube1 {
     -webkit-animation-delay: 0.2s;
             animation-delay: 0.2s; }

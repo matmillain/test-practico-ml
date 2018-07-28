@@ -1,6 +1,7 @@
-:host {
-  @import "../../../common/variables.scss";
+@import '../../../../assets/styles/variables';
 
+:host {
+  
   .categories-list {
     margin: 16px 0;
     display: flex;

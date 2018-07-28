@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ItemsServices } from '../../../services/items.service';
 import { throwError, Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
+import { LoaderService } from '../../../common/loader/loader.service';
 
 @Component({
   selector: 'app-item-list',
@@ -17,7 +18,8 @@ export class ItemListComponent implements OnInit, OnDestroy {
 
   constructor(
     private _activatedRoute: ActivatedRoute,
-    private _itemsServices: ItemsServices
+    private _itemsServices: ItemsServices,
+    private _loaderService: LoaderService
   ) { }
 
   ngOnInit() {
@@ -36,10 +38,9 @@ export class ItemListComponent implements OnInit, OnDestroy {
   }
 
   getItems(search: string, limit: number) {
-    this.startLoading();
+    this._loaderService.showLoader();
     this._itemEndSubcription = this._itemsServices.getItemsByQuery(search, limit).subscribe(
       data => {
-        // refresh the list
         this.items = data['results'];
         this.categories = (data['results'].length > 0 && data['filters'].length > 0)
           ? data['filters'][0]['values']['0']['path_from_root']
@@ -47,11 +48,14 @@ export class ItemListComponent implements OnInit, OnDestroy {
         this.stopLoading();
       },
       error => {
-        console.error('Error get items!');
         this.stopLoading();
         return throwError(error);  // Angular 6/RxJS 6
       }
    );
+  }
+
+  trackById(index, item) {
+    return item.id;
   }
 
   startLoading() {

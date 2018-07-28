@@ -1,5 +1,5 @@
-import { HandleErrorsComponent } from './../handle-errors/handle-errors.component';
-import { LoaderComponent } from './../loader/loader.component';
+import { LoaderModule } from './../../common/loader/loader.module';
+import { HandleErrorsComponent } from '../../common/handle-errors/handle-errors.component';
 import { ItemCategoriesComponent } from './item-categories/item-categories.component';
 
 import { ItemsRoutingModule } from './items-routing.module';
@@ -18,17 +18,20 @@ import { SharedModule } from '../../shared/shared.module';
     CommonModule,
     ItemsRoutingModule,
     SharedModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    LoaderModule
   ],
   declarations: [
     ItemListComponent,
     ItemDetailComponent,
     ItemCategoriesComponent,
-    LoaderComponent,
     HandleErrorsComponent
   ],
+  entryComponents: [
+  ],
   providers: [
-    ItemsServices
+    ItemsServices,
+    LoaderModule
   ]
 })
 export class ItemsModule { }

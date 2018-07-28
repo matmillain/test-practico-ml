@@ -1,15 +1,18 @@
 <!-- Spinner -->
 <app-loader-spinner 
-  *ngIf="loading"
-  [title]="'Buscando la descripción a tu próximo producto...'"
-  >
+  *ngIf="loading">
+  Buscando la descripción a tu próximo producto...
 </app-loader-spinner>
 
 <!-- Item categories -->
-<app-item-categories [categories]="itemCategories"></app-item-categories>
+<app-item-categories 
+  [categories]="itemCategories">
+</app-item-categories>
 
 <!-- Title -->
-<h2 class="hide-title">Mercado Libre - Detalle de producto!</h2>
+<h2 class="hide-title">
+  Mercado Libre - Detalle de producto!
+</h2>
 
 <!-- Item detail -->
 <article *ngIf="item && itemDescription !loading" class="item-detail-container">

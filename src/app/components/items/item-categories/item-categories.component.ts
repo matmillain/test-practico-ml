@@ -6,7 +6,7 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./item-categories.component.scss']
 })
 export class ItemCategoriesComponent {
-  @Input() categories: any;
+  @Input() categories = [];
 
   constructor() { }
 

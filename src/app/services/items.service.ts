@@ -2,17 +2,17 @@ import {throwError as observableThrowError,  Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { tap, catchError } from 'rxjs/operators';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../environments/environment';
 
 
 @Injectable()
 export class ItemsServices {
   urlBase = environment.urlWebApiConfiguracion;
   urlBaseComplementMLA = this.urlBase + environment.urlWebApiSiteMLAComplement;
-  items: any;
-  searchItemss: any;
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient
+  ) { }
 
   getItemsByQuery(query: string, limit: number) {
     const QUERY = `search?q=${query}&limit=${limit}`;
@@ -20,7 +20,7 @@ export class ItemsServices {
     return this.http.get(API_URL)
       .pipe(
         tap(
-          data => JSON.stringify(data),
+          data => data,
           catchError(this.errorHandler)
         )
       );
@@ -32,7 +32,7 @@ export class ItemsServices {
     return this.http.get(API_URL)
       .pipe(
         tap(
-          data => JSON.stringify(data),
+          data => data,
           catchError(this.errorHandler)
         )
       );
@@ -44,7 +44,7 @@ export class ItemsServices {
     return this.http.get(API_URL)
       .pipe(
         tap(
-          data => JSON.stringify(data),
+          data => data,
           catchError(this.errorHandler)
         )
       );
@@ -56,13 +56,13 @@ export class ItemsServices {
     return this.http.get(API_URL)
       .pipe(
         tap(
-          data => JSON.stringify(data),
+          data => data,
           catchError(this.errorHandler)
         )
       );
   }
 
-  errorHandler(error: HttpErrorResponse) {
+  private errorHandler(error: HttpErrorResponse) {
     return observableThrowError(error.message || 'Server Error');
   }
 

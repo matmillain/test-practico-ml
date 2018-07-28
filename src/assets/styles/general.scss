@@ -1,11 +1,15 @@
-@import "app/common/variables.scss";
+@import './variables.scss';
 
+// General
+// ---------------------------------------------------------------- //
 body {
   margin: 0;
   background-color: $color_grey;
   font-family: Roboto,"Helvetica Neue",sans-serif;
 }
 
+// Container and SEO friendly
+// ---------------------------------------------------------------- //
 .hide-title {
   display: none;
 }
@@ -25,23 +29,4 @@ body {
 
 .fix-padding-container {
   padding: 0 15px;
-}
-
-.no-results {
-  min-height: 204px;
-
-  .header-title {
-    font-size: 24px;
-    font-weight: 600;
-    line-height: 1.08;
-  }
-
-  .tips-list {
-    list-style-type: disc;
-    padding-left: 18px;
-    margin-top: 16px;
-    font-size: 16px;
-    font-weight: 300;
-    line-height: 1.38;
-  }
 }

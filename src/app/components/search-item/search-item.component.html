@@ -1,0 +1,12 @@
+<form class="inline-form">
+  <input class="input-search-text"
+    placeholder="Nunca dejes de buscar"
+    #searchText
+    >
+  <button mat-button 
+    class="btn-search"
+    (click)="searchItems(searchText.value)"
+    >
+    Buscar
+  </button>
+</form>

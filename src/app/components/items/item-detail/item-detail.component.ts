@@ -50,7 +50,6 @@ export class ItemDetailComponent implements OnInit, OnDestroy {
         this.stopLoading();
       },
       error => {
-        console.error('Error get item!');
         this.stopLoading();
         return throwError(error);
       }
@@ -65,7 +64,6 @@ export class ItemDetailComponent implements OnInit, OnDestroy {
       this.stopLoading();
     },
     error => {
-      console.error('Error get description!');
       this.stopLoading();
       this._itemDescriptionEndSubcription.unsubscribe();
       return throwError(error);  // Angular 6/RxJS 6
@@ -84,7 +82,6 @@ export class ItemDetailComponent implements OnInit, OnDestroy {
        this.stopLoading();
      },
      error => {
-       console.error('Error get categories!');
        this.stopLoading();
        this._itemCategoriesEndSubcription.unsubscribe();
        return throwError(error);  // Angular 6/RxJS 6

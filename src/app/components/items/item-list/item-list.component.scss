@@ -1,5 +1,6 @@
+@import '../../../../assets/styles/variables.scss';
+
 :host {
-  @import "../../../common/variables.scss";
 
   .item-list-container {
     background: #fff;
@@ -55,6 +56,11 @@
                 font-size: 12px;
               }
             }
+    
+            .item-title,
+            .item-quantity {
+              font-size: 18px;
+            }
 
             .item-title {
               font-weight: 500;
@@ -69,11 +75,6 @@
 
             .item-quantity {
               font-weight: 400;
-            }
-    
-            .item-title,
-            .item-quantity {
-              font-size: 18px;
             }
           }
         }

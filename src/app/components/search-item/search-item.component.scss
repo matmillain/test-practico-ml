@@ -1,0 +1,28 @@
+@import '../../../assets/styles/variables';
+
+:host {
+  width: 100%;
+
+  .inline-form {
+
+    .input-search-text {
+      width: calc(100% - 70px);
+      height: 40px;
+      padding: 0 15px;
+      font-size: 16px;
+      border: none;
+      outline: none !important;
+    }
+
+    .btn-search {
+      padding: 0;
+      min-width: 40px;
+      height: 40px;
+      border-radius: 0;
+      text-indent: -9999px;
+      background: $color_grey url('../../../assets/images/ic_Search@2x.png') center center no-repeat;
+      background-size: 20px;
+      vertical-align: bottom;
+    }
+  }
+}

@@ -1,4 +1,4 @@
-@import "../variables.scss";
+@import '../../../assets/styles/variables';
 
 :host {
 
@@ -41,7 +41,6 @@
         .btn-search {
           border-radius: 0;
           text-indent: -9999px;
-          background-color: $color_grey;
           background: $color_grey url('../../../assets/images/ic_Search@2x.png') center center no-repeat;
           background-size: 20px;
           padding: 0;
