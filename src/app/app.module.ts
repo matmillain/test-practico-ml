@@ -1,4 +1,3 @@
-import { LoaderComponent } from './common/loader/loader.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
@@ -24,7 +23,7 @@ import { HomeComponent } from './pages/home/home.component';
     SearchItemComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({appId: 'test-practico-ml'}),
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,

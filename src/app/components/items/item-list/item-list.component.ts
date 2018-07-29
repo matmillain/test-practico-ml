@@ -1,3 +1,4 @@
+import { Meta } from '@angular/platform-browser';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ItemsServices } from '../../../services/items.service';
 import { throwError, Subscription } from 'rxjs';
@@ -19,7 +20,8 @@ export class ItemListComponent implements OnInit, OnDestroy {
   constructor(
     private _activatedRoute: ActivatedRoute,
     private _itemsServices: ItemsServices,
-    private _loaderService: LoaderService
+    private _loaderService: LoaderService,
+    private _metaService: Meta
   ) { }
 
   ngOnInit() {
@@ -45,6 +47,17 @@ export class ItemListComponent implements OnInit, OnDestroy {
         this.categories = (data['results'].length > 0 && data['filters'].length > 0)
           ? data['filters'][0]['values']['0']['path_from_root']
           : null;
+        this._metaService.addTags([
+          { name: 'og:title', content: 'Buscando los mejores productos en ' + search },
+          { name: 'og:description', content: 'Buscando los mejores productos a tu necesidad en Mercado Libre' },
+          { name: 'og:image', content: 'https://mlstaticquic-a.akamaihd.net/ui/navigation/4.0.3/mercadolibre/logo__large_plus@2x.png' },
+          { name: 'twitter:description', content: 'Buscando los mejores productos a tu necesidad en Mercado Libre' },
+          { name: 'twitter:card', content: 'https://mlstaticquic-a.akamaihd.net/ui/navigation/4.0.3/mercadolibre/logo__large_plus@2x.png' },
+          { name: 'twitter:site', content: 'Mercado Libre - Lider latinoamerica en Ventas Online.' },
+          { name: 'twitter:creator', content: 'Matias Millain' },
+          { name: 'twitter:title', content: 'Buscando los mejores productos en ' + search},
+          { name: 'twitter:image', content: 'https://mlstaticquic-a.akamaihd.net/ui/navigation/4.0.3/mercadolibre/logo__large_plus@2x.png' }
+        ]);
         this.stopLoading();
       },
       error => {

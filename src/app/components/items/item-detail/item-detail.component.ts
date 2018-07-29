@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ItemsServices } from '../../../services/items.service';
 import { throwError, Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
+import { Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-item-detail',
@@ -19,7 +20,8 @@ export class ItemDetailComponent implements OnInit, OnDestroy {
 
   constructor(
     private _activatedRoute: ActivatedRoute,
-    private _itemsServices: ItemsServices
+    private _itemsServices: ItemsServices,
+    private _metaService: Meta
   ) { }
 
   ngOnInit() {
@@ -43,8 +45,19 @@ export class ItemDetailComponent implements OnInit, OnDestroy {
     this.startLoading();
     this._itemEndSubcription = this._itemsServices.getItemById(id).subscribe(
       data => {
-        // refresh the list
+        // Get item data
         this.item = data;
+        // SEO Friendly
+        this._metaService.addTags([
+          { name: 'og:title', content: data['title'] },
+          { name: 'og:image', content: data['thumbnail'] },
+          { name: 'twitter:card', content: data['thumbnail'] },
+          { name: 'twitter:site', content: 'Detalle de producto' },
+          { name: 'twitter:creator', content: 'Matias Millain' },
+          { name: 'twitter:title', content: data['title'] },
+          { name: 'twitter:image', content: data['thumbnail'] }
+        ]);
+        // Get item description and categories
         this._getDescription(id);
         this._getCategories(data['category_id']);
         this.stopLoading();
@@ -61,11 +74,14 @@ export class ItemDetailComponent implements OnInit, OnDestroy {
     dataDescription => {
       // refresh the list
       this.itemDescription = dataDescription['plain_text'] ? dataDescription['plain_text'] : 'Sin descripción';
+      this._metaService.addTags([
+        { name: 'og:description', content: this.itemDescription },
+        { name: 'twitter:description', content: this.itemDescription }
+      ]);
       this.stopLoading();
     },
     error => {
       this.stopLoading();
-      this._itemDescriptionEndSubcription.unsubscribe();
       return throwError(error);  // Angular 6/RxJS 6
     }
    );
@@ -83,7 +99,6 @@ export class ItemDetailComponent implements OnInit, OnDestroy {
      },
      error => {
        this.stopLoading();
-       this._itemCategoriesEndSubcription.unsubscribe();
        return throwError(error);  // Angular 6/RxJS 6
      }
     );
