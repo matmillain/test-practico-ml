@@ -1,4 +1,4 @@
-import { LoaderModule } from './../../common/loader/loader.module';
+import { LoaderModule } from '../../common/loader/loader.module';
 import { HandleErrorsComponent } from '../../common/handle-errors/handle-errors.component';
 import { ItemCategoriesComponent } from './item-categories/item-categories.component';
 

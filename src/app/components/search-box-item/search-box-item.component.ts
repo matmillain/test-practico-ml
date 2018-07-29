@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-search-item',
-  templateUrl: './search-item.component.html',
-  styleUrls: ['./search-item.component.scss']
+  selector: 'app-search-box-item',
+  templateUrl: './search-box-item.component.html',
+  styleUrls: ['./search-box-item.component.scss']
 })
-export class SearchItemComponent {
+export class SearchBoxItemComponent {
 
   constructor(
     private router: Router

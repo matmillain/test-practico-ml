@@ -10,7 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 // Components
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './common/header/header.component';
-import { SearchItemComponent } from './components/search-item/search-item.component';
+import { SearchBoxItemComponent } from './components/search-box-item/search-box-item.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { HomeComponent } from './pages/home/home.component';
 
@@ -20,7 +20,7 @@ import { HomeComponent } from './pages/home/home.component';
     HeaderComponent,
     NotFoundComponent,
     HomeComponent,
-    SearchItemComponent
+    SearchBoxItemComponent
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'test-practico-ml'}),
