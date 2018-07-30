@@ -1,7 +1,9 @@
+// Core
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 
+// Modules
 import { AppRoutingModule } from './app-routing.module';
 import { ItemsModule } from './components/items/items.module';
 import { SharedModule } from './shared/shared.module';

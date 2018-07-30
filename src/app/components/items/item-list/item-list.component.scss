@@ -47,6 +47,10 @@
               .item-price {
                 font-size: 24px;
                 margin: 0;
+
+                @media (max-width: 768px) {
+                  padding-right: 140px;
+                }
               }
       
               .item-location {
@@ -54,6 +58,15 @@
                 right: 90px;
                 color: #666666;
                 font-size: 12px;
+                margin-top: -20px;
+
+                @media (max-width: 768px) {
+                  right: 10px;
+                  max-width: 120px;
+                  white-space: nowrap;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                }
               }
             }
     

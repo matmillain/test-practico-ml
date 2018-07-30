@@ -1,11 +1,12 @@
 <!-- Spinner -->
-<app-loader-spinner 
-  *ngIf="showLoader">
+<app-loader-spinner>
   Buscando los mejores productos...
 </app-loader-spinner>
 
+<h1>VALES: {{ vales2 }} </h1>
+
 <!-- Items serach -->
-<section *ngIf="items && !loading">
+<section *ngIf="items && items.length > 0">
   <h2 class="hide-title">
     Mercado Libre - Resultados de búsqueda!
   </h2>
@@ -16,23 +17,22 @@
   </app-item-categories>
 
   <!-- Items resutls -->
-  <ul *ngIf="items.length > 0" class="sub-container item-list-container item-group-content">
+  <ul class="sub-container item-list-container item-group-content">
     <li *ngFor="let item of items; trackBy: trackById" class="item-container">
       <a [routerLink]="['/items', item.id]" fxLayout="row" class="item-link">
         <!-- Item photo -->
         <div fxFlex="180px" class="item-img">
-          <img *ngIf="item.thumbnail?.length > 0" src="{{ item.thumbnail }}" alt="{{ item.title }}">
-          <img *ngIf="item.thumbnail?.length == 0" src="assets/images/none_img.jpg" alt="{{ item.title }}">
+          <img src="{{ item.picture }}" alt="{{ item.title }}">
         </div>
         <!-- Item detail -->
         <div fxFlex class="item-detail">
           <div class="item-price-and-location">
             <div class="item-price">
-              $ {{ item.price | number : '1.2-2' }}
-              <img *ngIf="item.shipping.free_shipping" src="assets/images/ic_shipping.png" alt="Envío gratis">
+              $ {{ item.price.amount | number : '1.2-2' }}
+              <img *ngIf="item.free_shipping" src="assets/images/ic_shipping.png" alt="Envío gratis">
             </div>
             <div class="item-location">
-              {{ item.address.city_name }}
+              {{ item.city_name }}
             </div>
           </div>
           <div class="item-title">
@@ -49,15 +49,15 @@
       </a>
     </li>
   </ul>
-
-  <app-handle-errors *ngIf="items.length == 0">
-    <h3 class="header-title">
-      No hay publicaciones que coincidan con tu búsqueda.
-    </h3>
-    <ul class="tips-list">
-      <li>Revisá la ortografía de la palabra.</li>
-      <li>Utilizá palabras más genéricas o menos palabras.</li>
-      <li>Navega por las categorías para encontrar un producto similar.</li>
-    </ul>
-  </app-handle-errors>
 </section>
+
+<app-handle-errors *ngIf="!items">
+  <h2 class="header-title">
+    No hay publicaciones que coincidan con tu búsqueda.
+  </h2>
+  <ul class="tips-list">
+    <li>Revisá la ortografía de la palabra.</li>
+    <li>Utilizá palabras más genéricas o menos palabras.</li>
+    <li>Navega por las categorías para encontrar un producto similar.</li>
+  </ul>
+</app-handle-errors>

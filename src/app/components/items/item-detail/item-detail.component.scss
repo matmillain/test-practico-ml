@@ -34,15 +34,18 @@
 
     .item-description {
 
+      h3,
+      p {
+        font-weight: 400;
+      }
+
       h3 {
         font-size: 28px;
-        font-weight: 400;
         margin-bottom: 32px;
       }
 
       p {
         font-size: 16px;
-        font-weight: 300;
       }
     }
   }

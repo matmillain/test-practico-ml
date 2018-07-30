@@ -27,8 +27,6 @@ import { SharedModule } from '../../shared/shared.module';
     ItemCategoriesComponent,
     HandleErrorsComponent
   ],
-  entryComponents: [
-  ],
   providers: [
     ItemsServices,
     LoaderModule

@@ -3,6 +3,7 @@ import { ItemsServices } from '../../../services/items.service';
 import { throwError, Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { Meta } from '@angular/platform-browser';
+import { LoaderService } from '../../../common/loader/loader.service';
 
 @Component({
   selector: 'app-item-detail',
@@ -10,10 +11,9 @@ import { Meta } from '@angular/platform-browser';
   styleUrls: ['./item-detail.component.scss']
 })
 export class ItemDetailComponent implements OnInit, OnDestroy {
-  item: any;
-  loading: boolean;
-  itemDescription: any;
-  itemCategories: any;
+  item: any = [];
+  itemDescription: any = '';
+  itemCategories: any = [];
   private _itemCategoriesEndSubcription: Subscription = null;
   private _itemEndSubcription: Subscription = null;
   private _itemDescriptionEndSubcription: Subscription = null;
@@ -21,7 +21,8 @@ export class ItemDetailComponent implements OnInit, OnDestroy {
   constructor(
     private _activatedRoute: ActivatedRoute,
     private _itemsServices: ItemsServices,
-    private _metaService: Meta
+    private _metaService: Meta,
+    private _loaderService: LoaderService,
   ) { }
 
   ngOnInit() {
@@ -42,11 +43,14 @@ export class ItemDetailComponent implements OnInit, OnDestroy {
   }
 
   getItem(id: string) {
-    this.startLoading();
+    this._loaderService.showLoader();
     this._itemEndSubcription = this._itemsServices.getItemById(id).subscribe(
       data => {
         // Get item data
-        this.item = data;
+        this.item = data.item;
+        // Get item description and categories
+        this._getDescription(id);
+        this._getCategories(data['item']['category_id']);
         // SEO Friendly
         this._metaService.addTags([
           { name: 'og:title', content: data['title'] },
@@ -57,13 +61,11 @@ export class ItemDetailComponent implements OnInit, OnDestroy {
           { name: 'twitter:title', content: data['title'] },
           { name: 'twitter:image', content: data['thumbnail'] }
         ]);
-        // Get item description and categories
-        this._getDescription(id);
-        this._getCategories(data['category_id']);
-        this.stopLoading();
+        // Loader
+        this._loaderService.hideLoader();
       },
       error => {
-        this.stopLoading();
+        this._loaderService.hideLoader();
         return throwError(error);
       }
    );
@@ -73,15 +75,14 @@ export class ItemDetailComponent implements OnInit, OnDestroy {
    this._itemDescriptionEndSubcription = this._itemsServices.getItemDescription(id).subscribe(
     dataDescription => {
       // refresh the list
-      this.itemDescription = dataDescription['plain_text'] ? dataDescription['plain_text'] : 'Sin descripción';
+      this.itemDescription = dataDescription['plain_text'];
       this._metaService.addTags([
         { name: 'og:description', content: this.itemDescription },
         { name: 'twitter:description', content: this.itemDescription }
       ]);
-      this.stopLoading();
     },
     error => {
-      this.stopLoading();
+      this.itemDescription = 'Sin descripción. Consulta con el vendedor para saber más detalles del producto.';
       return throwError(error);  // Angular 6/RxJS 6
     }
    );
@@ -91,25 +92,20 @@ export class ItemDetailComponent implements OnInit, OnDestroy {
     this._itemCategoriesEndSubcription = this._itemsServices.getCategoriesById(id).subscribe(
      dataCategories => {
        // refresh the list
-       this.itemCategories =
-         dataCategories['path_from_root'].length > 0
-         ? dataCategories['path_from_root']
-         : 'Sin categorías';
-       this.stopLoading();
+       if (dataCategories['path_from_root'].length > 0) {
+        dataCategories['path_from_root'].forEach(category => {
+          this.itemCategories.push(
+            category.name
+          );
+        });
+       } else {
+         this.itemCategories.push('Sin categorias');
+       }
      },
      error => {
-       this.stopLoading();
        return throwError(error);  // Angular 6/RxJS 6
      }
     );
-  }
-
-  startLoading() {
-    this.loading = true;
-  }
-
-  stopLoading() {
-    this.loading = false;
   }
 
 }

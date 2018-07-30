@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   urlWebApiConfiguracion: 'https://api.mercadolibre.com/',
-  urlWebApiSiteMLAComplement: 'sites/MLA/'
+  siteMLAComplement: 'sites/MLA/'
 };
 
 /*

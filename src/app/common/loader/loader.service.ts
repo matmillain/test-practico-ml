@@ -10,6 +10,6 @@ export class LoaderService {
   }
 
   hideLoader() {
-    this.status.next(true);
+    this.status.next(false);
   }
 }

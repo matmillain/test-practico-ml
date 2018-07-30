@@ -1,6 +1,5 @@
 <!-- Spinner -->
-<app-loader-spinner 
-  *ngIf="loading">
+<app-loader-spinner>
   Buscando la descripción a tu próximo producto...
 </app-loader-spinner>
 
@@ -15,19 +14,18 @@
 </h2>
 
 <!-- Item detail -->
-<article *ngIf="item && itemDescription !loading" class="item-detail-container">
+<article *ngIf="item && itemDescription" class="item-detail-container">
   <div class="item-container" fxLayout="row">
     <div fxFlex="70%" class="item-img">
-      <img *ngIf="item.pictures?.length > 0" src="{{ item.pictures[0].url }}" alt="{{ item.title }}">
-      <img *ngIf="item.pictures?.length == 0" src="assets/images/none_img.jpg" alt="{{ item.title }}">
+      <img src="{{ item.picture }}" alt="{{ item.title }}">
     </div>
     <div fxFlex class="item-detail">
       <div class="item-sold-and-condition">
         {{ (item.condition == 'new') ? 'Nuevo' : 'Usado' }} - 
         {{ (item.sold_quantity > 0) ? item.sold_quantity + ' Vendidos' : 'Sin ventas' }}
       </div>
-      <h1 class="item-title">{{ item.title }}</h1>
-      <p class="item-price">$ {{ item.price | number : '1.2-2' }}</p>
+      <h2 class="item-title">{{ item.title }}</h2>
+      <p class="item-price">$ {{ item.price.amount | number : '1.2-2' }}</p>
       <a mat-button href="{{ item.permalink }}" target="_blank" class="btn-sell">
         Comprar
       </a>
@@ -39,10 +37,10 @@
   </div>
 </article>
   
-<app-handle-errors *ngIf="!item && !loading">
-  <h3 class="header-title"> 
+<app-handle-errors *ngIf="!item">
+  <h2 class="header-title"> 
     Producto no encontrado.
-  </h3>
+  </h2>
   <ul class="tips-list">
     <li>Revisá la url ingresada.</li>
     <li>Intenta buscar el producto nuevamenente.</li>

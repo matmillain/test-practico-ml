@@ -14,7 +14,7 @@ export class ItemListComponent implements OnInit, OnDestroy {
   items: any;
   param: any;
   categories: any;
-  loading = false;
+  vales2: any;
   private _itemEndSubcription: Subscription = null;
 
   constructor(
@@ -40,13 +40,15 @@ export class ItemListComponent implements OnInit, OnDestroy {
   }
 
   getItems(search: string, limit: number) {
-    this._loaderService.showLoader();
+    this.vales2 = this._loaderService.showLoader();
     this._itemEndSubcription = this._itemsServices.getItemsByQuery(search, limit).subscribe(
       data => {
-        this.items = data['results'];
-        this.categories = (data['results'].length > 0 && data['filters'].length > 0)
-          ? data['filters'][0]['values']['0']['path_from_root']
+        // Items data
+        this.items = data.items;
+        this.categories = (data.categories.length > 0)
+          ? data.categories
           : null;
+        // SEO Friendly
         this._metaService.addTags([
           { name: 'og:title', content: 'Buscando los mejores productos en ' + search },
           { name: 'og:description', content: 'Buscando los mejores productos a tu necesidad en Mercado Libre' },
@@ -55,13 +57,14 @@ export class ItemListComponent implements OnInit, OnDestroy {
           { name: 'twitter:card', content: 'https://mlstaticquic-a.akamaihd.net/ui/navigation/4.0.3/mercadolibre/logo__large_plus@2x.png' },
           { name: 'twitter:site', content: 'Mercado Libre - Lider latinoamerica en Ventas Online.' },
           { name: 'twitter:creator', content: 'Matias Millain' },
-          { name: 'twitter:title', content: 'Buscando los mejores productos en ' + search},
+          { name: 'twitter:title', content: 'Buscando los mejores productos en ' + search },
           { name: 'twitter:image', content: 'https://mlstaticquic-a.akamaihd.net/ui/navigation/4.0.3/mercadolibre/logo__large_plus@2x.png' }
         ]);
-        this.stopLoading();
+        // Loader
+        this._loaderService.hideLoader();
       },
       error => {
-        this.stopLoading();
+        this._loaderService.hideLoader();
         return throwError(error);  // Angular 6/RxJS 6
       }
    );
@@ -69,13 +72,5 @@ export class ItemListComponent implements OnInit, OnDestroy {
 
   trackById(index, item) {
     return item.id;
-  }
-
-  startLoading() {
-    this.loading = true;
-  }
-
-  stopLoading() {
-    this.loading = false;
   }
 }
