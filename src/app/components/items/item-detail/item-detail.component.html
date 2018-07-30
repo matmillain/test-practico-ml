@@ -14,12 +14,12 @@
 </h2>
 
 <!-- Item detail -->
-<article *ngIf="item && itemDescription" class="item-detail-container">
-  <div class="item-container" fxLayout="row">
-    <div fxFlex="70%" class="item-img">
+<article *ngIf="item && itemDescription && !dontPreLoad" class="item-container">
+  <div class="item-detail" fxLayout="row">
+    <div fxFlex="70%" fxFlex.sm="40%" fxFlex.xs="40%" class="item-img">
       <img src="{{ item.picture }}" alt="{{ item.title }}">
     </div>
-    <div fxFlex class="item-detail">
+    <div fxFlex class="item-information-sale">
       <div class="item-sold-and-condition">
         {{ (item.condition == 'new') ? 'Nuevo' : 'Usado' }} - 
         {{ (item.sold_quantity > 0) ? item.sold_quantity + ' Vendidos' : 'Sin ventas' }}
@@ -37,13 +37,13 @@
   </div>
 </article>
   
-<app-handle-errors *ngIf="!item">
+<app-handle-errors *ngIf="!item && !dontPreLoad">
   <h2 class="header-title"> 
     Producto no encontrado.
   </h2>
   <ul class="tips-list">
     <li>Revisá la url ingresada.</li>
-    <li>Intenta buscar el producto nuevamenente.</li>
+    <li>Intenta nuevamente desde el buscador encontrar el producto.</li>
     <li>Asegurate de que el producto no se encuentre eliminado.</li>
   </ul>
 </app-handle-errors>

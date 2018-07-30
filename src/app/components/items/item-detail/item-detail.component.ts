@@ -11,9 +11,10 @@ import { LoaderService } from '../../../common/loader/loader.service';
   styleUrls: ['./item-detail.component.scss']
 })
 export class ItemDetailComponent implements OnInit, OnDestroy {
-  item: any = [];
-  itemDescription: any = '';
+  item: any;
+  itemDescription: any;
   itemCategories: any = [];
+  dontPreLoad = false;
   private _itemCategoriesEndSubcription: Subscription = null;
   private _itemEndSubcription: Subscription = null;
   private _itemDescriptionEndSubcription: Subscription = null;
@@ -43,7 +44,10 @@ export class ItemDetailComponent implements OnInit, OnDestroy {
   }
 
   getItem(id: string) {
+    // Variables to show content and loader
     this._loaderService.showLoader();
+    this.dontPreLoad = true;
+    // Get item by id
     this._itemEndSubcription = this._itemsServices.getItemById(id).subscribe(
       data => {
         // Get item data
@@ -61,10 +65,13 @@ export class ItemDetailComponent implements OnInit, OnDestroy {
           { name: 'twitter:title', content: data['title'] },
           { name: 'twitter:image', content: data['thumbnail'] }
         ]);
-        // Loader
+        // Variables to show content and loader
+        this.dontPreLoad = false;
         this._loaderService.hideLoader();
       },
       error => {
+        // Variables to show content and loader
+        this.dontPreLoad = false;
         this._loaderService.hideLoader();
         return throwError(error);
       }
@@ -83,7 +90,7 @@ export class ItemDetailComponent implements OnInit, OnDestroy {
     },
     error => {
       this.itemDescription = 'Sin descripción. Consulta con el vendedor para saber más detalles del producto.';
-      return throwError(error);  // Angular 6/RxJS 6
+      return throwError(error);
     }
    );
   }
@@ -103,7 +110,8 @@ export class ItemDetailComponent implements OnInit, OnDestroy {
        }
      },
      error => {
-       return throwError(error);  // Angular 6/RxJS 6
+        this.itemCategories.push('Sin categorias');
+        return throwError(error);
      }
     );
   }

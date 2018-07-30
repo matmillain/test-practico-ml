@@ -2,11 +2,23 @@
 
 :host {
 
-  .item-detail-container {
+  .item-container {
     background-color: #fff;
     padding: 32px;
 
-    .item-container {
+    .item-detail {
+
+      .item-img img {
+        max-width: 100%;
+      }
+
+      .item-information-sale {
+        padding-left: 16px;
+
+        @media (min-width: 768px) {
+          padding-left: 10px;
+        }
+      }
 
       .item-sold-and-condition {
         font-size: 14px;
@@ -14,13 +26,23 @@
       }
 
       .item-title {
-        font-size: 24px;
+        font-size: 16px;
+        margin-top: 0;
         margin-bottom: 32px;
+
+        @media (min-width: 768px) {
+          font-size: 24px;
+        }
       }
 
       .item-price {
-        font-size: 46px;
+        font-size: 28px;
+        margin-top: 0;
         margin-bottom: 32px;
+
+        @media (min-width: 768px) {
+          font-size: 46px;
+        }
       }
 
       .btn-sell {
@@ -40,12 +62,21 @@
       }
 
       h3 {
-        font-size: 28px;
-        margin-bottom: 32px;
+        font-size: 22px;
+        margin-bottom: 22px;
+
+        @media (min-width: 768px) {
+          font-size: 28px;
+          margin-bottom: 32px;
+        }
       }
 
       p {
-        font-size: 16px;
+        font-size: 14px;
+
+        @media (min-width: 768px) {
+          font-size: 16px;
+        }
       }
     }
   }

@@ -3,10 +3,8 @@
   Buscando los mejores productos...
 </app-loader-spinner>
 
-<h1>VALES: {{ vales2 }} </h1>
-
 <!-- Items serach -->
-<section *ngIf="items && items.length > 0">
+<section *ngIf="items && items.length > 0 && !dontPreLoad">
   <h2 class="hide-title">
     Mercado Libre - Resultados de búsqueda!
   </h2>
@@ -51,7 +49,7 @@
   </ul>
 </section>
 
-<app-handle-errors *ngIf="!items">
+<app-handle-errors *ngIf="!items && !dontPreLoad">
   <h2 class="header-title">
     No hay publicaciones que coincidan con tu búsqueda.
   </h2>

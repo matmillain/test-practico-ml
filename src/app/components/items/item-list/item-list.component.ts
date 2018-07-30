@@ -14,7 +14,7 @@ export class ItemListComponent implements OnInit, OnDestroy {
   items: any;
   param: any;
   categories: any;
-  vales2: any;
+  dontPreLoad = false;
   private _itemEndSubcription: Subscription = null;
 
   constructor(
@@ -40,7 +40,10 @@ export class ItemListComponent implements OnInit, OnDestroy {
   }
 
   getItems(search: string, limit: number) {
-    this.vales2 = this._loaderService.showLoader();
+    // Variables to show content and loader
+    this._loaderService.showLoader();
+    this.dontPreLoad = true;
+    // Get items list by query
     this._itemEndSubcription = this._itemsServices.getItemsByQuery(search, limit).subscribe(
       data => {
         // Items data
@@ -60,12 +63,15 @@ export class ItemListComponent implements OnInit, OnDestroy {
           { name: 'twitter:title', content: 'Buscando los mejores productos en ' + search },
           { name: 'twitter:image', content: 'https://mlstaticquic-a.akamaihd.net/ui/navigation/4.0.3/mercadolibre/logo__large_plus@2x.png' }
         ]);
-        // Loader
+        // Variables to show content and loader
+        this.dontPreLoad = false;
         this._loaderService.hideLoader();
       },
       error => {
+        // Variables to show content and loader
+        this.dontPreLoad = false;
         this._loaderService.hideLoader();
-        return throwError(error);  // Angular 6/RxJS 6
+        return throwError(error);
       }
    );
   }
