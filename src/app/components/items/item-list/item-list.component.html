@@ -26,7 +26,7 @@
         <div fxFlex class="item-detail">
           <div class="item-price-and-location">
             <div class="item-price">
-              $ {{ item.price.amount | number : '1.2-2' }}
+              $ {{ item.price.amount | number : '' : 'es' }}
               <img *ngIf="item.free_shipping" src="assets/images/ic_shipping.png" alt="Envío gratis">
             </div>
             <div class="item-location">

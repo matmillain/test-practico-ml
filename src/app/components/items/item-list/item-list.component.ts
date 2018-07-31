@@ -4,6 +4,8 @@ import { ItemsServices } from '../../../services/items.service';
 import { throwError, Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { LoaderService } from '../../../common/loader/loader.service';
+import { registerLocaleData } from '@angular/common';
+import es from '@angular/common/locales/es';
 
 @Component({
   selector: 'app-item-list',
@@ -25,6 +27,9 @@ export class ItemListComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
+    // Angular way locale numbers --> (see item-price on html)
+    registerLocaleData(es);
+    // Get items
     this._activatedRoute.queryParams
       .pipe(params => params)
       .subscribe(params => {

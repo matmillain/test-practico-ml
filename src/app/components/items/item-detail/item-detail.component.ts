@@ -4,6 +4,8 @@ import { throwError, Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { Meta } from '@angular/platform-browser';
 import { LoaderService } from '../../../common/loader/loader.service';
+import { registerLocaleData } from '@angular/common';
+import es from '@angular/common/locales/es';
 
 @Component({
   selector: 'app-item-detail',
@@ -27,6 +29,9 @@ export class ItemDetailComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
+    // Angular way locale numbers --> (see item-price on html)
+    registerLocaleData(es);
+    // Get item
     this._activatedRoute.params.subscribe(params => {
       const id = params['id'];
       this.getItem(id);

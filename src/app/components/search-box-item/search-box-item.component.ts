@@ -14,12 +14,11 @@ export class SearchBoxItemComponent {
 
   searchItems(searchText: string) {
     if (searchText !== '') {
+      // Refresh content on the current router
       const navigationExtras: NavigationExtras = {
         queryParams: { search: searchText }
       };
-
       this.router.navigate(['/items'], navigationExtras);
-      // this.router.navigate(['/items'], { queryParams: { search: searchText } });
     }
   }
 

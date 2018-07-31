@@ -25,7 +25,7 @@
         {{ (item.sold_quantity > 0) ? item.sold_quantity + ' Vendidos' : 'Sin ventas' }}
       </div>
       <h2 class="item-title">{{ item.title }}</h2>
-      <p class="item-price">$ {{ item.price.amount | number : '1.2-2' }}</p>
+      <p class="item-price">$ {{ item.price.amount | number : '1.2-2': 'es' }}</p>
       <a mat-button href="{{ item.permalink }}" target="_blank" class="btn-sell">
         Comprar
       </a>
