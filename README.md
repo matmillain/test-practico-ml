@@ -4,13 +4,16 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Stack
 
-* Angular 6 (https://angular.io/)
+* Angular 6 (v6.0.3)
 * Node >= 6
 
-## Docs
+## Reference
 
+* Angular 6 (https://angular.io/)
+* Angular CLI (https://github.com/angular/angular-cli)
 * Angular Material (https://material.angular.io/)
 * Angular Flex Layout (https://github.com/angular/flex-layout)
+* Mercado Libre CSS Style Guide (https://github.com/mercadolibre/css-style-guide)
 
 ## API reference
 
