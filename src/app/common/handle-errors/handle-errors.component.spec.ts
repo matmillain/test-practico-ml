@@ -19,7 +19,13 @@ describe('HandleErrorsComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create the handle errors component', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should have a class `message` in div', () => {
+    fixture = TestBed.createComponent(HandleErrorsComponent);
+    const result = fixture.nativeElement.querySelector('div');
+    expect(result.getAttribute('class')).toContain('message');
   });
 });

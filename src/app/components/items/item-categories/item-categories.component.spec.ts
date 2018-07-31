@@ -19,7 +19,7 @@ describe('ItemCategoriesComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create the item categories component', () => {
     expect(component).toBeTruthy();
   });
 });

@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { RouterTestingModule } from '@angular/router/testing';
 import { SearchBoxItemComponent } from './search-box-item.component';
 
 describe('SearchItemComponent', () => {
@@ -8,7 +8,12 @@ describe('SearchItemComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SearchBoxItemComponent ]
+      imports: [
+        RouterTestingModule
+      ],
+      declarations: [
+        SearchBoxItemComponent
+      ]
     })
     .compileComponents();
   }));
@@ -19,7 +24,7 @@ describe('SearchItemComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create the search box item component', () => {
     expect(component).toBeTruthy();
   });
 });

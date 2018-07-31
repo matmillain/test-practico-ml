@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-search-box-item',
@@ -14,7 +14,12 @@ export class SearchBoxItemComponent {
 
   searchItems(searchText: string) {
     if (searchText !== '') {
-      this.router.navigate(['/items'], { queryParams: { search: searchText } });
+      const navigationExtras: NavigationExtras = {
+        queryParams: { search: searchText }
+      };
+
+      this.router.navigate(['/items'], navigationExtras);
+      // this.router.navigate(['/items'], { queryParams: { search: searchText } });
     }
   }
 
